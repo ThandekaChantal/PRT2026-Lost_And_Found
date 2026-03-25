@@ -16,7 +16,7 @@ The system aims to help students and staff report and recover lost items across 
 ---
 
 ## 👥 Group Members
-- Thandeka Malande (Leader)
+- Thandeka Malande
 - Owenkosi Nxasana
 - Nomhle Njengele
 - Pertunia Sifunda
