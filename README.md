@@ -26,19 +26,16 @@ The system aims to help students and staff report and recover lost items across 
 ---
 
 ## 🛠️ Technology Stack
-- HTML5
-- CSS3
-- JavaScript
-- MySQL
+
+- Java
 - GitHub (Version Control)
 
 ---
 
 ## 📂 Repository Structure
 
-- `/docs` → Project documentation and reports  
-- `/wireframes` → UI designs and sketches  
-- `/design` → UML diagrams, ERD, system design  
+- `/docs` → Project documentation and reports    
+- `/design` → UML diagrams, ERD, system design  `/wireframes` → UI designs and sketches 
 - `/code` → Application source code  
 
 ---
