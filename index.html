@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPUT Lost & Found System</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">CPUT Lost & Found</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="report.html" class="btn-primary">Report Item</a>
+      <a href="admin.html">Admin Portal</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="filters">
+      <h2>Filter Items</h2>
+      <select id="filterCampus">
+        <option value="">All Campuses</option>
+        <option value="Bellville">Bellville</option>
+        <option value="District Six">District Six</option>
+        <option value="Mowbray">Mowbray</option>
+        <option value="Granger Bay">Granger Bay</option>
+        <option value="Wellington">Wellington</option>
+        <option value="Athlone">Athlone</option>
+      </select>
+      <select id="filterType">
+        <option value="">All Types</option>
+        <option value="lost">Lost</option>
+        <option value="found">Found</option>
+      </select>
+      <button onclick="fetchItems()">Apply Filter</button>
+    </section>
+
+    <section>
+      <h2>Reported Items</h2>
+      <div id="itemGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
