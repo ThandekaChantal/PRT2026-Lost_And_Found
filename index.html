@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPUT Lost & Found System</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>CPUT Lost & Found</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="admin.html" class="nav-link"><i class="fa-solid fa-user-shield"></i> Admin Portal</a>
+        <a href="report.html" class="btn-primary"><i class="fa-solid fa-plus"></i> Report Item</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Reconnecting CPUT Students with Their Belongings</h1>
+      <p>Search reported lost and found items across all six CPUT campuses in real time.</p>
+      
+      <!-- Combined Search Bar -->
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search by keyword (e.g., Student Card, Keys, Laptop)..." onkeyup="filterItems()">
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="container">
+    
+    <!-- Filter Section -->
+    <section class="filter-card">
+      <div class="filter-header">
+        <h2><i class="fa-solid fa-sliders"></i> Filter Results</h2>
+        <button class="btn-secondary" onclick="resetFilters()"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+      </div>
+
+      <div class="filter-grid">
+        <div class="filter-group">
+          <label for="filterCampus"><i class="fa-solid fa-location-dot"></i> Campus Location</label>
+          <select id="filterCampus" onchange="fetchItems()">
+            <option value="">All Campuses</option>
+            <option value="Bellville">Bellville</option>
+            <option value="District Six">District Six</option>
+            <option value="Mowbray">Mowbray</option>
+            <option value="Granger Bay">Granger Bay</option>
+            <option value="Wellington">Wellington</option>
+            <option value="Athlone">Athlone</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterType"><i class="fa-solid fa-tags"></i> Item Type</label>
+          <select id="filterType" onchange="fetchItems()">
+            <option value="">All Types (Lost & Found)</option>
+            <option value="lost">Lost Items</option>
+            <option value="found">Found Items</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reported Items Section -->
+    <section class="items-section">
+      <div class="section-title">
+        <h2><i class="fa-solid fa-boxes-stacked"></i> Reported Items</h2>
+        <span id="itemCount" class="item-count-badge">Loading...</span>
+      </div>
+
+      <!-- Grid where items load dynamically -->
+      <div id="itemGrid" class="grid"></div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 CPUT Lost & Found System | ICT Application Development Project</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
