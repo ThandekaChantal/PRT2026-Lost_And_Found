@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Item - CPUT Lost & Found</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">CPUT Lost & Found</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="admin.html">Admin Portal</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Report Lost or Found Item</h2>
+    <form id="reportForm" class="form-card">
+      <label>Item Name:</label>
+      <input type="text" id="title" required>
+
+      <label>Type:</label>
+      <select id="type" required>
+        <option value="lost">Lost</option>
+        <option value="found">Found</option>
+      </select>
+
+      <label>Category:</label>
+      <input type="text" id="category" placeholder="e.g. Student Card, Laptop, Keys" required>
+
+      <label>Campus Location:</label>
+      <select id="campus" required>
+        <option value="Bellville">Bellville</option>
+        <option value="District Six">District Six</option>
+        <option value="Mowbray">Mowbray</option>
+        <option value="Granger Bay">Granger Bay</option>
+        <option value="Wellington">Wellington</option>
+        <option value="Athlone">Athlone</option>
+      </select>
+
+      <label>Description:</label>
+      <textarea id="description" rows="4" required></textarea>
+
+      <label>Image URL (Optional):</label>
+      <input type="url" id="image_url" placeholder="https://example.com/image.jpg">
+
+      <button type="submit" class="btn-primary">Submit Report</button>
+    </form>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
