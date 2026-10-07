@@ -1,15 +1,16 @@
-// Replace with your project credentials from Supabase Dashboard > Project Settings > API
+
 const SUPABASE_URL = "https://paotdbvkhuteffzzapof.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_Bt-NYSAXhikCLyJ8rq3nuw_PvfH09LI";
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Renamed variable to 'supabaseClient' to prevent syntax clashes
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Fetch items for home gallery
 async function fetchItems() {
   const campus = document.getElementById("filterCampus")?.value;
   const type = document.getElementById("filterType")?.value;
 
-  let query = supabase.from("items").select("*").eq("status", "Active");
+  let query = supabaseClient.from("items").select("*").eq("status", "Active");
 
   if (campus) query = query.eq("campus", campus);
   if (type) query = query.eq("type", type);
@@ -19,6 +20,11 @@ async function fetchItems() {
 
   const grid = document.getElementById("itemGrid");
   if (!grid) return;
+
+  if (data.length === 0) {
+    grid.innerHTML = "<p>No active reported items found.</p>";
+    return;
+  }
 
   grid.innerHTML = data.map(item => `
     <div class="card">
@@ -45,7 +51,7 @@ document.getElementById("reportForm")?.addEventListener("submit", async (e) => {
     status: "Active"
   };
 
-  const { error } = await supabase.from("items").insert([newItem]);
+  const { error } = await supabaseClient.from("items").insert([newItem]);
 
   if (error) {
     alert("Error submitting report: " + error.message);
@@ -57,7 +63,7 @@ document.getElementById("reportForm")?.addEventListener("submit", async (e) => {
 
 // Admin table view and actions
 async function fetchAdminItems() {
-  const { data, error } = await supabase.from("items").select("*");
+  const { data, error } = await supabaseClient.from("items").select("*");
   if (error) return console.error(error);
 
   const tbody = document.getElementById("adminTableBody");
@@ -79,10 +85,13 @@ async function fetchAdminItems() {
 }
 
 async function updateStatus(id, newStatus) {
-  const { error } = await supabase.from("items").update({ status: newStatus }).eq("id", id);
+  const { error } = await supabaseClient.from("items").update({ status: newStatus }).eq("id", id);
   if (!error) fetchAdminItems();
 }
 
-if (document.getElementById("itemGrid")) {
-  fetchItems();
-}
+// Auto-run fetch function as soon as the HTML document finishes loading
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.getElementById("itemGrid")) {
+    fetchItems();
+  }
+});
